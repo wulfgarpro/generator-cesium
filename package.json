@@ -1,0 +1,19 @@
+{
+  "name": "generator-cesium",
+  "version": "0.0.1",
+  "description": "Cesium + Express webapp generator for Yeoman",
+  "keywords": [
+    "yeoman-generator",
+    "express",
+    "cesium"
+  ],
+  "engines": {
+    "node:": ">=4.0.0"
+  },
+  "dependencies": {
+    "generator-express": "^2.15.0",
+    "yeoman-generator": "^1.1.1"
+  },
+  "devDependencies": {},
+  "author": "James Fraser <wulfgar.pro 'at' gmail.com>"
+}
