@@ -9,3 +9,6 @@ Cesium + Express webapp generator for Yeoman
 * Install yeoman: `npm install -g yeoman`
 * Install the generator: `npm install -g generator-cesium`
 * Run: `yo cesium`
+
+## Licence
+[MIT Licence](http://en.wikipedia.org/wiki/MIT_License)
