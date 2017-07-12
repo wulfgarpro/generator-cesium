@@ -1,4 +1,4 @@
-'use strict';
+'se strict';
 
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
@@ -10,11 +10,6 @@ module.exports = class extends Generator {
 	}
 
 	prompting() {
-		// Have Yeoman greet the user.
-		this.log(yosay(
-			'Welcome to the striking ' + chalk.red('generator-cesium') + ' generator!'
-		));
-
 		const prompts = [{
 			type: 'input',
 			name: 'path',
@@ -23,16 +18,17 @@ module.exports = class extends Generator {
 		}];
 
 		return this.prompt(prompts).then(props => {
-			// To access props later use this.props.someAnswer;
 			this.props = props;
 		});
 	}
 
 	writing() {
-		/*this.fs.copy(
-			this.templatePath('dummyfile.txt'),
-			this.destinationPath('dummyfile.txt')
-		);*/
+		this.fs.copy(
+			this.templatePath('app.js'),
+			this.destinationPath('app.js')
+			this.templatePath('index.html'),
+			this.destinationPath('public/index.html')
+		);
 	}
 
 	installCesium() {
