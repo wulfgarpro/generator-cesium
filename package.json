@@ -27,16 +27,16 @@
     "jest-cli": "^20.0.0"
   },
   "dependencies": {
+    "chalk": "^2.0.1",
+    "generator-express": "^2.15.0",
     "yeoman-generator": "^1.0.0",
-	"generator-express": "^2.15.0",
-    "chalk": "^1.1.3",
     "yosay": "^2.0.0"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublish": "nsp check",
+    "audit": "nsp check",
     "pretest": "eslint . --fix",
     "test": "jest"
   },
