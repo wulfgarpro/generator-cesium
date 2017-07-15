@@ -28,7 +28,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(<%= viewer_context %>, express.static(path.join(__dirname, 'public/index.html'))); // eslint-disable-line
+// eslint-disable-next-line
+app.use(<%= viewer %>, express.static(path.join(__dirname, 'public/index.html')));
 app.use('/cesium/', express.static(path.join(__dirname, 'node_modules/cesium/Build')));
 app.use('/users', users);
 
