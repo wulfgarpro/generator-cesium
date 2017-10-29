@@ -16,6 +16,10 @@ Then generate your new project:
 yo cesium
 ```
 
+**NOTE:**
+Since generator-cesium runs in compose mode with generator-express, you'll have to select 'y' when
+asked if you'd like to overwrite app.js.
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
