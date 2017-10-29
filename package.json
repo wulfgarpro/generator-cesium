@@ -29,7 +29,7 @@
   "dependencies": {
     "cesium": "^1.38.0",
     "generator-express": "^2.16.0",
-    "yeoman-generator": "^1.0.0"
+    "yeoman-generator": "^2.0.0"
   },
   "jest": {
     "testEnvironment": "node"
