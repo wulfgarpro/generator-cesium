@@ -56,14 +56,14 @@ module.exports = class extends Generator {
   writing() { }
 
   generateExpress() {
-    this.composeWith(require.resolve('generator-express/app'), { dirname: this.props.app_name, createDirectory: 'n' });
+    this.composeWith(require.resolve('generator-express/app'), {dirname: this.props.app_name, createDirectory: 'n'});
   }
 
   conflicts() { }
-  
-  install() { 
+
+  install() {
     // Install Cesium npm package.
-    this.npmInstall(['cesium'], { save: true });
+    this.npmInstall(['cesium'], {save: true});
   }
 
   end() {
