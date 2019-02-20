@@ -14,12 +14,12 @@ Then generate your new project:
 yo cesium
 ```
 
-Then run your new cesium server:
+Run your new cesium server:
 ```bash
 cd app/
 npm start
 ```
-and navigate your browser: http://localhost:3000.
+... and navigate your browser: http://localhost:3000.
 
 **NOTE:**
 Since generator-cesium runs in compose mode with generator-express, you'll have to select 'y' when
