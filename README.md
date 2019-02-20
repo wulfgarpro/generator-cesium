@@ -3,7 +3,7 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-cesium using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)):
+First, install [Yeoman](http://yeoman.io) and [generator-cesium](https://www.npmjs.com/package/generator-cesium) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)):
 ```bash
 npm install -g yo
 npm install -g generator-cesium
