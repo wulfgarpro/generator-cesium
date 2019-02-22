@@ -13,24 +13,13 @@ Then generate your new project:
 ```bash
 yo cesium
 ```
+NOTE: since generator-cesium is composed with generator-express, select _y_ when asked if you'd like to overwrite app.js.
 
 Run your new cesium server:
 ```bash
 cd app/
 npm start
 ```
-
-
-**NOTE:**
-Since generator-cesium runs in compose mode with generator-express, you'll have to select 'y' when
-asked if you'd like to overwrite app.js.
-
-## Getting To Know Yeoman
-
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## License
 
