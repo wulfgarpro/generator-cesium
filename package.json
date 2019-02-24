@@ -36,6 +36,7 @@
         "testEnvironment": "node"
     },
     "scripts": {
+        "lint": "eslint . --fix",
         "audit": "nsp check",
         "test": "jest"
     },
