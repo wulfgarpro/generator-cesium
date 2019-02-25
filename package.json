@@ -38,7 +38,8 @@
     "scripts": {
         "lint": "eslint . --fix",
         "audit": "nsp check",
-        "test": "jest"
+        "pretest": "eslint . --fix",
+        "test": "jest --coverage"
     },
     "eslintConfig": {
         "extends": "xo-space",
