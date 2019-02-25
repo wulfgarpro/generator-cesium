@@ -52,7 +52,7 @@ describe('generator-cesium/app Test', () => {
 
       cesiumGenerator.cesiumizeExpress();
       expect(cesiumGenerator.fs.copyTpl).toHaveBeenCalledTimes(2);
-      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(1, undefined, undefined, { 'viewer_context': 'somecontext' });
+      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(1, undefined, undefined, { 'viewerContext': 'somecontext' });
       expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(2, undefined, undefined);
       expect(cesiumGenerator.templatePath).toHaveBeenCalledTimes(2);
       expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(1, 'app.js');
