@@ -9,6 +9,7 @@ describe('generator-cesium/app Test', () => {
     cesiumGenerator = new Generator();
     Object.defineProperty(cesiumGenerator, 'fs', { get: () => Object });
     Object.defineProperty(cesiumGenerator, 'props', { get: () => Object });
+    cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
     cesiumGenerator.fs.copyTpl = jest.fn();
   });
 
@@ -47,7 +48,6 @@ describe('generator-cesium/app Test', () => {
 
   describe('cesiumizeExpress()', () => {
     it('calls Generator\'s fs.copyTpl() for generator template files', function () {
-      cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
       cesiumGenerator.props.viewer_context = 'somecontext'; // eslint-disable-line camelcase
 
       cesiumGenerator.cesiumizeExpress();
@@ -92,9 +92,10 @@ describe('generator-cesium/app Test', () => {
   });
   
   describe('generateExpress()', () => {
-    cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
-    cesiumGenerator.generateExpress();
-    expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
-    expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
+    if('calls composeWith() for generator/express', function() {
+      cesiumGenerator.generateExpress();
+      expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
+      expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
+    )};
   });
 });
