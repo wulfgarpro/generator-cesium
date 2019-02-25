@@ -79,10 +79,13 @@ describe('generator-cesium/app Test', () => {
           default: 'app'
         }
       ];
-
+      cesiumGenerator.prompt.then = jest.fn();
+      
       cesiumGenerator.prompting();
       expect(cesiumGenerator.prompt).toHaveBeenCalledTimes(1);
       expect(cesiumGenerator.prompt).toHaveBeenCalledWith(prompts);  
+      expect(cesiumGenerator.prompt.then).toHaveBeenCalledTimes(1);
+      expect(cesiumGenerator.prompt.then).toHaveBeenCalledWith(prompts);  
     });
   });
   
