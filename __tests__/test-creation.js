@@ -90,4 +90,11 @@ describe('generator-cesium/app Test', () => {
       expect(cesiumGenerator.cesiumizeExpress).toHaveBeenCalledTimes(1);
     });
   });
+  
+  describe('generateExpress()', () => {
+    cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
+    cesiumGenerator.generateExpress();
+    expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
+    expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
+  });
 });
