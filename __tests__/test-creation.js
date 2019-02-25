@@ -92,10 +92,10 @@ describe('generator-cesium/app Test', () => {
   });
   
   describe('generateExpress()', () => {
-    if('calls composeWith() for generator/express', function() {
+    it('calls composeWith() for generator/express', function() {
       cesiumGenerator.generateExpress();
       expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
       expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
-    )};
+    });
   });
 });
