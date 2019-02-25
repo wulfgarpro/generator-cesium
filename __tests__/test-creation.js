@@ -46,16 +46,20 @@ describe('generator-cesium/app Test', () => {
   });
 
   describe('cesiumizeExpress()', () => {
-    it('calls Generator\'s fs.copyTpl() for app.js template', function () {
+    it('calls Generator\'s fs.copyTpl() for generator template files', function () {
       cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
       cesiumGenerator.props.viewer_context = 'somecontext'; // eslint-disable-line camelcase
 
       cesiumGenerator.cesiumizeExpress();
       expect(cesiumGenerator.fs.copyTpl).toHaveBeenCalledTimes(2);
-      expect(cesiumGenerator.templatePath).toHaveBeenCalledWith('app.js');
-      expect(cesiumGenerator.destinationPath).toHaveBeenCalledWith('someapp/app.js');
-      expect(cesiumGenerator.templatePath).toHaveBeenCalledWith('public/html');
-      expect(cesiumGenerator.destinationPath).toHaveBeenCalledWith('someapp/public/html');
+      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(1, undefined, undefined, { 'viewer_context': 'somecontext' });
+      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(2, undefined, undefined);
+      expect(cesiumGenerator.templatePath).toHaveBeenCalledTimes(2);
+      expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(1, 'app.js');
+      expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(2, 'public/html');     
+      expect(cesiumGenerator.destinationPath).toHaveBeenCalledTimes(2);
+      expect(cesiumGenerator.destinationPath).toHaveBeenNthCalledWith(1, 'someapp/app.js');
+      expect(cesiumGenerator.destinationPath).toHaveBeenNthCalledWith(2, 'someapp/public/html');
     });
   });
 
