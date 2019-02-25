@@ -64,24 +64,26 @@ describe('generator-cesium/app Test', () => {
   });
 
   describe('prompting()', () => {
-    const prompts = [
-      {
-        type: 'input',
-        name: 'viewer_context',
-        message: 'Type the context path to Cesium viewer (e.g. /cesium):',
-        default: '/'
-      },
-      {
-        type: 'input',
-        name: 'app_name',
-        message: 'Type the name for your express app:',
-        default: 'app'
-      }
-    ];
-    
-    cesiumGenerator.prompting();
-    expect(cesiumGenerator.prompt).toHaveBeenCalledTimes(1);
-    expect(cesiumGenerator.prompt).toHaveBeenCalledWith(prompts);  
+    it('calls Generator\'s prompt()', function() {
+      const prompts = [
+        {
+          type: 'input',
+          name: 'viewer_context',
+          message: 'Type the context path to Cesium viewer (e.g. /cesium):',
+          default: '/'
+        },
+        {
+          type: 'input',
+          name: 'app_name',
+          message: 'Type the name for your express app:',
+          default: 'app'
+        }
+      ];
+
+      cesiumGenerator.prompting();
+      expect(cesiumGenerator.prompt).toHaveBeenCalledTimes(1);
+      expect(cesiumGenerator.prompt).toHaveBeenCalledWith(prompts);  
+    });
   });
   
   describe('configuring()', () => {
