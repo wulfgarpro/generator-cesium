@@ -24,8 +24,6 @@ module.exports = class extends Generator {
     };
   }
 
-  initializing() { }
-
   prompting() {
     const prompts = [
       {
@@ -53,13 +51,9 @@ module.exports = class extends Generator {
     this.root = this.destinationRoot();
   }
 
-  writing() { }
-
   generateExpress() {
     this.composeWith(require.resolve('generator-express/app'), {dirname: this.props.app_name, createDirectory: 'n'});
   }
-
-  conflicts() { }
 
   install() {
     // Install Cesium npm package.

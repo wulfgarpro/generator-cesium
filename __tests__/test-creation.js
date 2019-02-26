@@ -7,8 +7,11 @@ describe('generator-cesium/app Test', () => {
   var cesiumGenerator;
   beforeEach(() => {
     cesiumGenerator = new Generator();
-    Object.defineProperty(cesiumGenerator, 'fs', { get: () => Object });
-    Object.defineProperty(cesiumGenerator, 'props', { get: () => Object });
+    Object.defineProperty(cesiumGenerator, 'fs', {get: () => Object});
+    Object.defineProperty(cesiumGenerator, 'props', {
+      get: () => Object,
+      set: () => Object
+    });
     cesiumGenerator.props.app_name = 'someapp'; // eslint-disable-line camelcase
     cesiumGenerator.fs.copyTpl = jest.fn();
   });
@@ -18,17 +21,8 @@ describe('generator-cesium/app Test', () => {
   });
 
   describe('generator functions', () => {
-    it('has initializing()', function () {
-      expect(cesiumGenerator.initializing).toBeDefined();
-    });
     it('has prompting()', function () {
       expect(cesiumGenerator.prompting).toBeDefined();
-    });
-    it('has writing()', function () {
-      expect(cesiumGenerator.writing).toBeDefined();
-    });
-    it('has conflicts()', function () {
-      expect(cesiumGenerator.conflicts).toBeDefined();
     });
     it('has install()', function () {
       expect(cesiumGenerator.install).toBeDefined();
@@ -52,11 +46,11 @@ describe('generator-cesium/app Test', () => {
 
       cesiumGenerator.cesiumizeExpress();
       expect(cesiumGenerator.fs.copyTpl).toHaveBeenCalledTimes(2);
-      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(1, undefined, undefined, { 'viewerContext': 'somecontext' });
+      expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(1, undefined, undefined, {viewerContext: 'somecontext'});
       expect(cesiumGenerator.fs.copyTpl).toHaveBeenNthCalledWith(2, undefined, undefined);
       expect(cesiumGenerator.templatePath).toHaveBeenCalledTimes(2);
       expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(1, 'app.js');
-      expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(2, 'public/html');     
+      expect(cesiumGenerator.templatePath).toHaveBeenNthCalledWith(2, 'public/html');
       expect(cesiumGenerator.destinationPath).toHaveBeenCalledTimes(2);
       expect(cesiumGenerator.destinationPath).toHaveBeenNthCalledWith(1, 'someapp/app.js');
       expect(cesiumGenerator.destinationPath).toHaveBeenNthCalledWith(2, 'someapp/public/html');
@@ -64,7 +58,7 @@ describe('generator-cesium/app Test', () => {
   });
 
   describe('prompting()', () => {
-    it('calls Generator\'s prompt()', function() {
+    it('calls Generator\'s prompt()', function () {
       const prompts = [
         {
           type: 'input',
@@ -79,16 +73,18 @@ describe('generator-cesium/app Test', () => {
           default: 'app'
         }
       ];
-      cesiumGenerator.prompt.then = jest.fn();
-      
+      cesiumGenerator.prompt = jest.fn().mockReturnValue(
+        Promise.resolve()
+      );
+      jest.spyOn(cesiumGenerator, 'prompting');
+
       cesiumGenerator.prompting();
       expect(cesiumGenerator.prompt).toHaveBeenCalledTimes(1);
-      expect(cesiumGenerator.prompt).toHaveBeenCalledWith(prompts);  
-      expect(cesiumGenerator.prompt.then).toHaveBeenCalledTimes(1);
-      expect(cesiumGenerator.prompt.then).toHaveBeenCalledWith(prompts);  
+      expect(cesiumGenerator.prompt).toHaveBeenCalledWith(prompts);
+      expect(cesiumGenerator.prompting).toHaveReturned();
     });
   });
-  
+
   describe('configuring()', () => {
     it('calls Generator\'s destinationRoot()', function () {
       cesiumGenerator.configuring();
@@ -96,11 +92,19 @@ describe('generator-cesium/app Test', () => {
     });
   });
 
+  describe('generateExpress()', () => {
+    it('calls composeWith() for generator/express', function () {
+      cesiumGenerator.generateExpress();
+      expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
+      expect(cesiumGenerator.composeWith).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
+    });
+  });
+
   describe('install()', () => {
     it('calls Generator\'s npmInstall()', function () {
       cesiumGenerator.install();
       expect(cesiumGenerator.npmInstall).toHaveBeenCalledTimes(1);
-      expect(cesiumGenerator.npmInstall).toHaveBeenCalledWith(['cesium'], { save: true });
+      expect(cesiumGenerator.npmInstall).toHaveBeenCalledWith(['cesium'], {save: true});
     });
   });
 
@@ -114,14 +118,6 @@ describe('generator-cesium/app Test', () => {
       expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledTimes(1);
       expect(cesiumGenerator.resetDestinationRoot).toHaveBeenCalledWith('someroot');
       expect(cesiumGenerator.cesiumizeExpress).toHaveBeenCalledTimes(1);
-    });
-  });
-  
-  describe('generateExpress()', () => {
-    it('calls composeWith() for generator/express', function() {
-      cesiumGenerator.generateExpress();
-      expect(cesiumGenerator.composeWith).toHaveBeenCalledTimes(1);
-      expect(cesiumGenerator.composeWith).toHaveBeenCalledWith(require.resolve('generator-express/app'), {dirname: 'someapp', createDirectory: 'n'});
     });
   });
 });
