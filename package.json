@@ -1,6 +1,6 @@
 {
     "name": "generator-cesium",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Cesium + Express webapp generator for Yeoman",
     "homepage": "https://github.com/wulfgarpro/generator-cesium",
     "author": {
